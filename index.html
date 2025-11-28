@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fairus Hakim — Biodata</title>
+  <meta name="description" content="Biodata Fairus Hakim — CV interaktif, portofolio, pengalaman, skills." />
+  <style>
+    /* Reset ringkas */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7ed957;
+      --muted:#9aa6b2;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --glass-border: rgba(255,255,255,0.04);
+      --glass-strong: rgba(255,255,255,0.06);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;}
+    body{
+      min-height:100%;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(126,217,87,0.03), transparent 6%),
+        radial-gradient(circle at 90% 90%, rgba(127,153,255,0.02), transparent 10%),
+        var(--bg);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px;
+      line-height:1.5;
+    }
+
+    /* Layout */
+    .container{ max-width:1100px; margin:0 auto; display:grid; grid-template-columns: 360px 1fr; gap:28px; align-items:start; }
+    @media (max-width:900px){ .container{ grid-template-columns:1fr; padding:12px } }
+
+    /* SIDEBAR */
+    .sidebar{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass-border);
+      border-radius:14px;
+      padding:22px;
+      position:sticky; top:24px;
+      height:fit-content;
+      box-shadow: 0 6px 20px rgba(3,7,18,0.6);
+    }
+    .avatar{
+      width:100%; height:240px; border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#071226 0%, #122333 100%);
+      border:1px solid var(--glass-border);
+      margin-bottom:18px; position:relative;
+    }
+    .avatar svg{ width:70%; height:auto; opacity:0.95; filter: drop-shadow(0 6px 20px rgba(0,0,0,0.7)); }
+
+    h1.name{ font-size:22px; letter-spacing:0.6px; margin-bottom:6px; }
+    p.role{ color:var(--muted); margin-bottom:12px; font-size:13px; }
+
+    .stats{ display:flex; gap:8px; margin:12px 0 18px; }
+    .stat{ flex:1; background:var(--glass); border-radius:10px; padding:10px; text-align:center; border:1px solid rgba(255,255,255,0.02); }
+    .stat strong{ display:block; font-size:18px; }
+    .muted{ color:var(--muted); font-size:13px; }
+
+    .contact-list{ display:grid; gap:8px; margin-top:10px; }
+    .contact-item{ display:flex; gap:10px; align-items:center; padding:8px; border-radius:8px; background:var(--glass-2); border:1px solid rgba(255,255,255,0.01); }
+    .contact-item small{ color:var(--muted); font-size:13px; }
+    .tag{ font-size:12px; padding:6px 8px; border-radius:999px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.02); }
+
+    /* MAIN */
+    .main{ }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border:1px solid var(--glass-border);
+      border-radius:14px;
+      padding:20px;
+      margin-bottom:18px;
+    }
+
+    .hero{
+      display:flex; gap:18px; align-items:center;
+    }
+    .hero .lead{ flex:1; }
+    .hero h2{ font-size:20px; margin-bottom:6px; }
+    .hero p.lead-desc{ color:var(--muted); margin-bottom:12px; font-size:14px; }
+
+    .cta-row{ display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{
+      background:transparent; border:1px solid var(--glass-border); padding:8px 12px; border-radius:10px; cursor:pointer; color:inherit;
+      transition:all .18s ease;
+    }
+    .btn:hover{ transform:translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.45); }
+
+    /* skills */
+    .skill{ margin-bottom:12px; }
+    .skill .meta{ display:flex; justify-content:space-between; margin-bottom:6px; font-size:13px; color:var(--muted); }
+    .bar{ height:10px; background:var(--glass-2); border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.02); }
+    .bar > i{ display:block; height:100%; background:linear-gradient(90deg, rgba(126,217,87,0.18), rgba(126,217,87,0.28)); width:0%; transition: width .9s cubic-bezier(.2,.9,.2,1); }
+
+    /* timeline */
+    .timeline{ display:grid; gap:14px; }
+    .timeline-item{ display:flex; gap:12px; align-items:flex-start; }
+    .dot{ width:12px; height:12px; border-radius:999px; background:var(--glass); border:2px solid var(--accent); margin-top:6px; flex-shrink:0; }
+    .timeline-body{ background:var(--glass-2); padding:12px; border-radius:8px; border:1px solid rgba(255,255,255,0.02); }
+
+    /* portfolio */
+    .grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; }
+    @media (max-width:900px){ .grid{ grid-template-columns: repeat(2,1fr); } }
+    @media (max-width:520px){ .grid{ grid-template-columns: 1fr; } }
+    .project{ border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.03); background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.007)); padding:12px; }
+    .project img{ width:100%; height:120px; object-fit:cover; border-radius:6px; display:block; margin-bottom:8px; }
+    .project h4{ font-size:15px; margin-bottom:6px; }
+
+    /* contact form */
+    form .row{ display:flex; gap:10px; }
+    form input[type="text"], form input[type="email"], form textarea{
+      width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit;
+    }
+    form textarea{ min-height:110px; resize:vertical; }
+
+    footer{ margin-top:8px; text-align:center; color:var(--muted); font-size:13px; }
+
+    /* small flourishes */
+    .quote{ font-style:italic; color:var(--muted); margin:8px 0 12px; }
+    .chip{ display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.03); margin-right:8px; font-size:13px; }
+
+    /* subtle entrance */
+    .reveal{ opacity:0; transform: translateY(8px); transition: all .6s cubic-bezier(.2,.9,.2,1); }
+    .reveal.visible{ opacity:1; transform:none; }
+
+    /* print-friendly */
+    @media print{
+      body{ background:white; color:black; }
+      .sidebar, .card{ border:none; box-shadow:none; background:transparent; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="page">
+    <!-- SIDEBAR -->
+    <aside class="sidebar reveal" id="sidebar">
+      <div class="avatar" aria-hidden="true">
+        <!-- SVG placeholder portrait -->
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar Fairus Hakim">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#17324a"/>
+              <stop offset="1" stop-color="#0b1a2a"/>
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#g1)"/>
+          <g transform="translate(30,20)" fill="#e6eef6">
+            <circle cx="70" cy="50" r="36" opacity="0.95"/>
+            <rect x="10" y="100" rx="10" ry="10" width="120" height="60" opacity="0.06"/>
+            <path d="M20 160 Q70 130 120 160" fill="none" stroke="#e6eef6" stroke-opacity="0.03" stroke-width="6"/>
+          </g>
+        </svg>
+      </div>
+
+      <h1 class="name">Fairus Hakim</h1>
+      <p class="role">Game Dev wannabe · Frontend tinkerer · Story-driven creator</p>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>20+</strong><span class="muted">Proyek</span>
+        </div>
+        <div class="stat">
+          <strong>4</strong><span class="muted">Skill utama</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="muted" style="margin-bottom:8px;">Ringkasan singkat</div>
+        <p style="font-size:14px; color:#dff3d4; margin-bottom:10px;">
+          Seorang pemimpi yang lebih memilih ngoding daripada tidur. Suka musik, game, dan cerita gelap yang berakhir ngasal.
+        </p>
+        <div class="contact-list">
+          <div class="contact-item">
+            <div style="flex:1">
+              <small>Lokasi</small>
+              <div style="font-weight:600">Indonesia</div>
+            </div>
+            <div class="tag">Open to work</div>
+          </div>
+
+          <div class="contact-item">
+            <div style="flex:1">
+              <small>Email</small>
+              <div style="font-weight:600">fairus.hakim@example.com</div>
+            </div>
+            <div class="tag">@fairush</div>
+          </div>
+
+          <div class="contact-item">
+            <div style="flex:1">
+              <small>Telepon</small>
+              <div style="font-weight:600">+62 812-3456-7890</div>
+            </div>
+            <div class="tag">WA</div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="margin:14px 0; border:none; height:1px; background:var(--glass-border)">
+
+      <div>
+        <div class="muted" style="margin-bottom:10px;">Skill</div>
+        <div class="skill">
+          <div class="meta"><span>HTML & CSS</span><span>95%</span></div>
+          <div class="bar"><i style="width:95%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="meta"><span>JavaScript</span><span>88%</span></div>
+          <div class="bar"><i style="width:88%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="meta"><span>Game Design (2D)</span><span>74%</span></div>
+          <div class="bar"><i style="width:74%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="meta"><span>Unity / Godot</span><span>65%</span></div>
+          <div class="bar"><i style="width:65%"></i></div>
+        </div>
+      </div>
+
+      <hr style="margin:14px 0; border:none; height:1px; background:var(--glass-border)">
+
+      <div>
+        <div class="muted" style="margin-bottom:8px;">Hobi & Minat</div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <span class="chip">Musik</span>
+          <span class="chip">Game Retro</span>
+          <span class="chip">Sketsa Karakter</span>
+          <span class="chip">Novel Pendek</span>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:8px;">
+        <button class="btn" onclick="downloadCV()">Download CV</button>
+        <button class="btn" onclick="scrollToSection('contact')">Hubungi</button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main" id="main">
+      <!-- HERO -->
+      <section class="card reveal">
+        <div class="hero">
+          <div class="lead">
+            <h2>Halo, mnh. Nama aing <strong>Fairus Hakim</strong></h2>
+            <p class="lead-desc">Aing bikin ini biar orang tau: ngoding bukan sekedar kerja, tapi cara nulis cerita pakai logika. Game, musik, dan kopi jadi bahan bakar.</p>
+            <div class="cta-row">
+              <button class="btn" onclick="scrollToSection('portfolio')">Lihat Proyek</button>
+              <button class="btn" onclick="scrollToSection('timeline')">Perjalanan</button>
+              <button class="btn" onclick="toggleTheme()">Mode Malam</button>
+            </div>
+          </div>
+
+          <div style="width:240px; text-align:center;">
+            <!-- SVG decorative -->
+            <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="lg2" x1="0" x2="1">
+                  <stop offset="0" stop-color="#7ed957"/>
+                  <stop offset="1" stop-color="#6ac4ff"/>
+                </linearGradient>
+              </defs>
+              <rect rx="20" width="100%" height="100%" fill="url(#lg2)" opacity="0.06"></rect>
+              <g transform="translate(20,24)" fill="#e6eef6">
+                <rect x="0" y="84" width="160" height="12" rx="6" opacity="0.03"></rect>
+                <circle cx="80" cy="44" r="40" opacity="0.95"></circle>
+                <rect x="40" y="110" width="80" height="46" rx="10" opacity="0.04"></rect>
+              </g>
+            </svg>
+            <div style="margin-top:8px; color:var(--muted); font-size:13px;">Game Dev • Story Lover • Coffee Addict</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT / SUMMARY -->
+      <section class="card reveal" id="about">
+        <h3 style="margin-bottom:10px;">Tentang Fairus</h3>
+        <p class="quote">"Aing percaya: ide yang paling gelap bisa jadi mekanik paling manis kalau dipoles dengan kode." — Fairus</p>
+        <p style="margin-bottom:10px; color:var(--muted);">
+          Fairus Hakim, lulusan otodidak dengan obsesi bikin game 2D yang nyeritain sekolah, persahabatan, dan konsekuensi. Suka eksperimen mekanik, suka soundtrack yang bikin merinding, dan percaya kalau bug itu sebenernya fitur yang belum ketemu cara penceritaannya.
+        </p>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <div style="flex:1; min-width:260px;">
+            <h4>Keahlian teknis</h4>
+            <ul style="margin-top:8px; color:var(--muted);">
+              <li>HTML, CSS, JavaScript (DOM, Canvas)</li>
+              <li>Desain level 2D, state machine, UI/UX untuk game</li>
+              <li>Tools: Tiled, Aseprite, Git</li>
+              <li>Engine: Godot (lebih suka), Unity (paham dasar)</li>
+            </ul>
+          </div>
+
+          <div style="flex:1; min-width:260px;">
+            <h4>Soft skill</h4>
+            <ul style="margin-top:8px; color:var(--muted);">
+              <li>Storytelling & pacing</li>
+              <li>Problem solving & debugging</li>
+              <li>Kolaborasi kecil & feedback loop cepat</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO -->
+      <section class="card reveal" id="portfolio">
+        <h3 style="margin-bottom:12px;">Portofolio & Proyek</h3>
+
+        <div class="grid">
+          <article class="project">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%230b1220'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23dff3d4' font-size='28'>Citampi-inspired RPG (demo)</text></svg>" alt="Citampi-like demo screenshot" />
+            <h4>Citampi-ish Demo</h4>
+            <p style="color:var(--muted); font-size:13px; margin-bottom:8px;">Demo gabungan eksplorasi, NPC, dan battle sederhana. Fokus: feel & map interaksi.</p>
+            <div style="display:flex; gap:8px;">
+              <button class="btn" onclick="openProject('citampi')">Detail</button>
+              <button class="btn" onclick="openProject('citampi-play')">Play</button>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%230b1220'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23c7ddff' font-size='28'>Platformer — 'Sekolah Gelap'</text></svg>" alt="Platformer screenshot" />
+            <h4>Platformer: Sekolah Gelap</h4>
+            <p style="color:var(--muted); font-size:13px; margin-bottom:8px;">Platform-fighting hybrid: skill tree sederhana, boss fight, cerita gelap di balik kelas.</p>
+            <div style="display:flex; gap:8px;">
+              <button class="btn" onclick="openProject('sekolahgelap')">Detail</button>
+            </div>
+          </article>
+
+          <article class="project">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400'><rect width='100%' height='100%' fill='%230b1220'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%23ffd8a8' font-size='28'>Mini-Game Collection</text></svg>" alt="Mini-game screenshot" />
+            <h4>Mini-Game Collection</h4>
+            <p style="color:var(--muted); font-size:13px; margin-bottom:8px;">Kumpulan mini-game low-spec untuk jam-jam kosong: memory, dodge, rhythm.</p>
+            <div style="display:flex; gap:8px;">
+              <button class="btn" onclick="openProject('minigames')">Detail</button>
+            </div>
+          </article>
+        </div>
+
+      </section>
+
+      <!-- TIMELINE -->
+      <section class="card reveal" id="timeline">
+        <h3 style="margin-bottom:12px;">Perjalanan</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="dot" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <strong>2008 — Lahir & mulai ngumpulin CD musik</strong>
+              <div class="muted">Masa kecil penuh lagu dan konsol jadul.</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="dot" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <strong>2018 — Eksperimen pertama: Game sederhana di HTML Canvas</strong>
+              <div class="muted">Belajar lewat trial-and-error, banyak bug, banyak tawa.</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="dot" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <strong>2023 — Rilis demo 'Citampi-ish'</strong>
+              <div class="muted">Masuk skil developer amatir, dapat feedback berharga.</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="dot" aria-hidden="true"></div>
+            <div class="timeline-body">
+              <strong>2025 — Fokus: game 2D school-fighting adventure</strong>
+              <div class="muted">Roadmap: prototyping -> art -> audio -> publish.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="card reveal" id="contact">
+        <h3 style="margin-bottom:12px;">Kontak & Pesan</h3>
+        <p class="muted" style="margin-bottom:8px;">Punya ide kolab? Mau pesan soundtrack? Atau cuma mau nyumbang kopi? Isi aja.</p>
+
+        <form id="contactForm" onsubmit="handleForm(event)">
+          <div class="row" style="margin-bottom:10px;">
+            <input type="text" id="name" placeholder="Nama" required />
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+          <div style="margin-bottom:10px;">
+            <input type="text" id="subject" placeholder="Subjek" required />
+          </div>
+          <div style="margin-bottom:10px;">
+            <textarea id="message" placeholder="Tulis pesanmu..." required></textarea>
+          </div>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="btn" type="submit">Kirim Pesan</button>
+            <button class="btn" type="button" onclick="resetForm()">Reset</button>
+            <div id="formStatus" style="color:var(--muted); font-size:13px;"></div>
+          </div>
+        </form>
+
+        <footer style="margin-top:14px;">
+          <small>Generated with ❤️ by Fairus Hakim — CV interaktif ini bebas dipakai.</small>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Small utility helpers
+    function revealOnLoad(){
+      document.querySelectorAll('.reveal').forEach((el, idx)=>{
+        setTimeout(()=> el.classList.add('visible'), 80 * (idx+1));
+      });
+    }
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 20, behavior: 'smooth' });
+    }
+
+    // Fake project opener
+    function openProject(key){
+      alert('Buka detail proyek: ' + key + '\\n(Ini cuma demo, taruh link repo atau page di sini.)');
+    }
+
+    // Form handling (client-side only)
+    function handleForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subj = document.getElementById('subject').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const status = document.getElementById('formStatus');
+
+      // Basic validation
+      if(!name || !email || !subj || !msg){
+        status.textContent = 'Lengkapi semua field biar gak nanggung.';
+        return;
+      }
+      if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)){
+        status.textContent = 'Emailnya jangan ngawur, mnh.';
+        return;
+      }
+
+      // Simulate send
+      status.textContent = 'Terkirim. Aing bales kalo udah baca — biasanya pake mimpi.';
+      setTimeout(()=> {
+        status.textContent = 'Pesan disimpan di log (demo).';
+      }, 1200);
+
+      // Clear after a bit
+      setTimeout(resetForm, 2200);
+    }
+
+    function resetForm(){
+      const f = document.getElementById('contactForm');
+      f.reset();
+      const status = document.getElementById('formStatus');
+      status.textContent = '';
+    }
+
+    // CV download generator
+    function downloadCV(){
+      const cv = {
+        nama: "Fairus Hakim",
+        email: "fairus.hakim@example.com",
+        tel: "+62 812-3456-7890",
+        summary: "Game dev yang suka eksperimen, fokus membuat pengalaman 2D bernarasi.",
+        skills: ["HTML","CSS","JavaScript","Game Design","Godot","Aseprite"],
+        projects: ["Citampi-ish Demo","Sekolah Gelap","Mini-Game Collection"]
+      };
+      const text = [
+        "CV — " + cv.nama,
+        "Email: " + cv.email,
+        "Tel: " + cv.tel,
+        "",
+        "Ringkasan:",
+        cv.summary,
+        "",
+        "Skills:",
+        cv.skills.join(', '),
+        "",
+        "Proyek:",
+        cv.projects.join(' | ')
+      ].join('\\n');
+
+      const blob = new Blob([text], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'CV-' + cv.nama.replace(/\\s+/g, '-') + '.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // Toggle "theme" (really just invert-ish)
+    let dark = true;
+    function toggleTheme(){
+      if(dark){
+        document.documentElement.style.setProperty('--bg','#f5f7fa');
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.documentElement.style.setProperty('--muted','#555b62');
+        document.documentElement.style.setProperty('--glass','rgba(0,0,0,0.03)');
+        document.documentElement.style.setProperty('--glass-border','rgba(0,0,0,0.06)');
+        document.body.style.color = '#0b1220';
+        dark = false;
+      } else {
+        document.documentElement.style.setProperty('--bg','#0f1724');
+        document.documentElement.style.setProperty('--card','#0b1220');
+        document.documentElement.style.setProperty('--muted','#9aa6b2');
+        document.documentElement.style.setProperty('--glass','rgba(255,255,255,0.03)');
+        document.documentElement.style.setProperty('--glass-border','rgba(255,255,255,0.04)');
+        document.body.style.color = '#e6eef6';
+        dark = true;
+      }
+    }
+
+    // Reveal skill bars (so they animate)
+    function animateSkillBars(){
+      document.querySelectorAll('.bar > i').forEach((el, idx) => {
+        const w = el.style.width || '50%';
+        el.style.width = '0%';
+        setTimeout(()=> el.style.width = w, 120);
+      });
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      revealOnLoad();
+      animateSkillBars();
+
+      // Accessibility: focusable outline for keyboard users
+      document.querySelectorAll('.btn').forEach(b => b.setAttribute('tabindex','0'));
+    });
+  </script>
+</body>
+</html>
